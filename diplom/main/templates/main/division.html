@@ -1,0 +1,56 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}Подразделения{% endblock %}
+{% block js %} {% static 'main/js/script.js' %} {% endblock %}
+
+{% block content %}
+			<div class="center_body">
+				{% if user.is_superuser == 1 %}
+				<div class="container_form">
+					<form id="forms" method="post">
+                        {% csrf_token %}
+						<label>
+							Подразделение
+							<div  class="decision_input">
+								{{division_form.division}}
+								<span>{{ error }}</span>
+							</div>
+						</label>
+						<button type="submit"> Внести данные </button>
+					</form>
+				</div>
+				{% endif %}
+				<div class="container_table">
+					<form id="forms_table" name="Md_Division" method="post" action="{% url 'delete_records' %}">
+						{% csrf_token %}
+						<div class="toolbar">
+							<div class="search"  {% if user.is_superuser == 0 %} style="flex: 0 0 100%;" {% endif %}>
+								<img src="{% static 'main/img/search.png' %}">
+								<input id="search_index" placeholder="Поиск">
+							</div>
+							{% if user.is_superuser == 1 %}<button id="delete-selected-btn" class="btn btn-danger" type="submit"> Удалить </button>{% endif %}
+						</div>
+						<table class="table" id="info-table">
+							<thead>
+								<tr>
+									<th><input id="th_checkbox" type="checkbox"></th>
+									<th>Подразделение</th>
+									{% if user.is_superuser == 1 %}<th>Изменить</th>{% endif %}
+								</tr>
+							</thead>
+							<tbody id="tbody">
+							{% for element in Md_Division %}
+								<tr>
+									<th><input name="tb_checkbox" id="tb_checkbox" value="{{element.id_division}}"  type="checkbox"></th>
+									<td>{{element.division}}</td>
+									{% if user.is_superuser == 1 %}<td><a href="{% url 'update_division' element.id_division %}" class="btn btn-primary" type="button">Изменить</a></td>{% endif %}
+								</tr>
+							{% endfor %}
+							</tbody>
+						</table>
+					</form>
+				</div>
+
+			</div>
+{% endblock %}

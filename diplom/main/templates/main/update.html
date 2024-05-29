@@ -1,0 +1,57 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}Изменить{% endblock %}
+
+{% block content %}
+			<div class="center_body">
+				<div class="container_form">
+					<form id="forms" method="post">
+						{% csrf_token %}
+						<label>
+							Решение
+							{{form.decision}}
+						</label>
+						<div class="chapter_responsible_input">
+							<label>
+								Раздел
+								{{form.id_chapter}}
+							</label>
+							<label>
+								Ответственный
+								{{form.id_responsible}}
+							</label>
+						</div>
+                        <div class="division_note_rfn_input">
+                            <label>
+                                Подразделение
+								{{form.id_division}}
+                            </label>
+                            <label>
+                                Примечание
+								{{form.note}}
+                            </label>
+                            <label>
+                                Причина невыполнения
+								{{form.reason_for_nonfulfillment}}
+                            </label>
+                        </div>
+                        <div class="status_period_data_input">
+                            <label>
+                                Отметка о выполнении
+								{{form.marks_of_completion}}
+                            </label>
+                            <label>
+                                Период
+								{{form.id_period}}
+                            </label>
+                            <label>
+                                Дата поступления
+								{{form.md_date}}
+                            </label>
+                        </div>
+						<button type="submit"> Изменить </button>
+					</form>
+				</div>
+			</div>
+{% endblock %}

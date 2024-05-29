@@ -1,0 +1,40 @@
+{% load static %}
+
+<html lang="en" dir="ltr">
+<head>
+    <link rel="shortcut icon" href="{% static 'main/img/logo_SGGA.png' %}" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="{% static 'authentication/css/login.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="wrapper">
+        <div class="title"><span>Авторизация</span></div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <i class="fas fa-user"></i>
+                <input type="text" name="username" placeholder="Логин">
+            </div>
+            <div class="row">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" placeholder="Пароль">
+            </div>
+            <!-- Место для отображения ошибок валидации -->
+<!--            {% if form.errors %}-->
+<!--            <script>-->
+<!--                alert('Имя пользователя или пароль неверны. Пожалуйста, попробуйте снова..');-->
+<!--            </script>-->
+<!--            {% endif %}-->
+            <div class="row button">
+                <input type="submit" value="Войти">
+            </div>
+            <!-- Ссылка на страницу регистрации -->
+        </form>
+    </div>
+</div>
+</body>
+</html>

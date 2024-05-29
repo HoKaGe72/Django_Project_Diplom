@@ -1,0 +1,44 @@
+{% load static %}
+
+<html lang="ru">
+<head>
+    <link rel="shortcut icon" href="{% static 'main/img/logo_SGGA.png' %}" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
+    <script src="{% block js %}{% endblock %}"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="center_header">
+            <nav class="header_menu">
+                <ul>
+                    <li><a class="text_menu" href="{% url 'home' %}">Методические решения</a></li>
+<!--                    <li><a class="text_menu" href="">Задачи</a></li>-->
+                    <li><a class="text_menu" >Справочники <img src="{% static 'main/img/up.png' %}"> </a>
+                        <ul class="submenu">
+                            <div class="submenu_item">
+                                <li><a class="text_menu" href="{% url 'period' %}">Периоды</a></li>
+                                <li><a class="text_menu" href="{% url 'responsible' %}">Ответственные</a></li>
+                                <li><a class="text_menu" href="{% url 'chapter' %}">Разделы</a></li>
+                                <li><a class="text_menu" href="{% url 'division' %}">Подразделение</a></li>
+                            </div>
+                        </ul>
+                    </li>
+                    <li><a class="text_menu" href="{% url 'report' %}">Отчеты</a></li>
+                    {% if user.is_staff == 1 %}<li><a class="text_menu" href="{% url 'admin:index' %}">Admin</a></li>{% endif %}
+                    <li><a class="text_menu" href="{% url 'logout_view' %}">Выйти</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="main" style="margin-bottom: 20px;">
+       {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

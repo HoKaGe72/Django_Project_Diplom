@@ -1,0 +1,27 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}Изменить{% endblock %}
+
+{% block content %}
+			<div class="center_body">
+				<div class="container_form">
+					<form id="forms" method="post">
+						{% csrf_token %}
+						<label>
+							{% if form.chapter %}Раздел{% endif%}
+							{% if form.division %}Подразделение{% endif%}
+							{% if form.period %}Период{% endif%}
+							{% if form.responsible %}Ответственный{% endif%}
+							<div class="decision_input">
+								{{form.chapter}}
+								{{form.division}}
+								{{form.period}}
+								{{form.responsible}}
+							</div>
+						</label>
+						<button type="submit"> Изменить </button>
+					</form>
+				</div>
+			</div>
+{% endblock %}
